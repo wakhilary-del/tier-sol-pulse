@@ -1,3 +1,5 @@
+import { LucideIcon } from 'lucide-react';
+
 export interface Tier {
   id: number;
   name: string;
@@ -7,7 +9,7 @@ export interface Tier {
   reward: number;
   boosts: string[];
   gradient: string;
-  icon: string;
+  iconName: string;
 }
 
 export const tiers: Tier[] = [
@@ -20,7 +22,7 @@ export const tiers: Tier[] = [
     reward: 0.25,
     boosts: ['+10% Platform Points', 'Early Access', 'Explorer Badge'],
     gradient: 'from-blue-500 to-cyan-400',
-    icon: '🔍',
+    iconName: 'Search',
   },
   {
     id: 2,
@@ -31,7 +33,7 @@ export const tiers: Tier[] = [
     reward: 1,
     boosts: ['+25% Points', 'Priority Feature Access', 'Weekly Multipliers', 'Voyager Badge'],
     gradient: 'from-cyan-500 to-teal-400',
-    icon: '🚀',
+    iconName: 'Rocket',
   },
   {
     id: 3,
@@ -42,7 +44,7 @@ export const tiers: Tier[] = [
     reward: 5,
     boosts: ['+50% Points', 'Beta Access', 'Increased Reward Rates', 'Navigator Badge'],
     gradient: 'from-purple-500 to-pink-400',
-    icon: '🧭',
+    iconName: 'Compass',
   },
   {
     id: 4,
@@ -53,7 +55,7 @@ export const tiers: Tier[] = [
     reward: 20,
     boosts: ['+120% Points', 'Private Channels', 'Whitelists', 'Seasonal Accelerators', 'Pioneer Badge'],
     gradient: 'from-orange-500 to-red-400',
-    icon: '⚡',
+    iconName: 'Zap',
   },
   {
     id: 5,
@@ -64,6 +66,6 @@ export const tiers: Tier[] = [
     reward: 120,
     boosts: ['+300% Points', 'VIP Support', 'Direct Voting', 'Pre-Release Partner Access', 'Elite Gold Badge'],
     gradient: 'from-yellow-500 to-amber-400',
-    icon: '👑',
+    iconName: 'Crown',
   },
 ];

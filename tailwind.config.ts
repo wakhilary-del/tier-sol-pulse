@@ -52,6 +52,13 @@ export default {
           cyan: "hsl(var(--solana-cyan))",
           blue: "hsl(var(--solana-blue))",
         },
+        tier: {
+          1: "hsl(var(--tier-1))",
+          2: "hsl(var(--tier-2))",
+          3: "hsl(var(--tier-3))",
+          4: "hsl(var(--tier-4))",
+          5: "hsl(var(--tier-5))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

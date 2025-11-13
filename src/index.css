@@ -8,54 +8,66 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 40% 2%;
+    --background: 220 20% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 220 35% 6%;
+    --card: 220 20% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 40% 4%;
+    --popover: 220 20% 6%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 265 100% 60%;
+    --primary: 265 85% 58%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 169 100% 52%;
-    --secondary-foreground: 220 40% 2%;
+    --secondary: 180 100% 60%;
+    --secondary-foreground: 220 20% 5%;
 
-    --muted: 220 25% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 215 15% 70%;
 
-    --accent: 265 100% 60%;
+    --accent: 265 85% 58%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 25% 15%;
-    --input: 220 25% 15%;
-    --ring: 265 100% 60%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 265 85% 58%;
 
     --radius: 1rem;
 
     /* Solana brand colors */
-    --solana-purple: 265 100% 60%;
-    --solana-cyan: 169 100% 52%;
-    --solana-blue: 220 100% 50%;
+    --solana-purple: 265 85% 58%;
+    --solana-cyan: 180 100% 60%;
+    --solana-blue: 230 80% 65%;
+    
+    /* Tier colors */
+    --tier-1: 200 90% 55%;
+    --tier-2: 180 85% 60%;
+    --tier-3: 265 80% 60%;
+    --tier-4: 285 75% 65%;
+    --tier-5: 45 100% 60%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(265 100% 60%) 0%, hsl(169 100% 52%) 100%);
-    --gradient-hero: radial-gradient(circle at 20% 50%, hsl(265 100% 60% / 0.3) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 50%, hsl(169 100% 52% / 0.3) 0%, transparent 50%);
-    --gradient-card: linear-gradient(135deg, hsl(220 35% 8% / 0.6) 0%, hsl(220 35% 6% / 0.8) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(265 85% 58%) 0%, hsl(180 100% 60%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(265 85% 25% / 0.3) 0%, transparent 70%),
+                      radial-gradient(ellipse at 0% 50%, hsl(230 80% 30% / 0.2) 0%, transparent 50%),
+                      radial-gradient(ellipse at 100% 50%, hsl(180 100% 30% / 0.2) 0%, transparent 50%);
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 10% / 0.5) 0%, hsl(220 20% 8% / 0.8) 100%);
+    --gradient-mesh: linear-gradient(135deg, hsl(265 85% 58% / 0.1) 0%, hsl(180 100% 60% / 0.1) 100%);
     
     /* Glows */
-    --glow-purple: 0 0 60px hsl(265 100% 60% / 0.4);
-    --glow-cyan: 0 0 60px hsl(169 100% 52% / 0.4);
-    --shadow-card: 0 20px 60px hsl(265 100% 60% / 0.15);
+    --glow-purple: 0 0 80px hsl(265 85% 58% / 0.3), 0 0 40px hsl(265 85% 58% / 0.2);
+    --glow-cyan: 0 0 80px hsl(180 100% 60% / 0.3), 0 0 40px hsl(180 100% 60% / 0.2);
+    --glow-blue: 0 0 60px hsl(230 80% 65% / 0.3);
+    --shadow-card: 0 25px 80px hsl(265 85% 20% / 0.2), 0 10px 30px hsl(265 85% 20% / 0.15);
+    --shadow-elevated: 0 30px 100px hsl(265 85% 20% / 0.3), 0 15px 40px hsl(180 100% 30% / 0.2);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
@@ -67,10 +79,17 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground overflow-x-hidden;
     background-image: var(--gradient-hero);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
   
   html {
     scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -82,10 +101,27 @@ All colors MUST be HSL.
     background-clip: text;
   }
   
+  .gradient-text-alt {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--solana-blue)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
   .glass-card {
     background: var(--gradient-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border) / 0.3);
+    backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  
+  .glass-card-hover:hover {
+    background: linear-gradient(135deg, hsl(220 20% 12% / 0.6) 0%, hsl(220 20% 10% / 0.9) 100%);
+    border-color: hsl(var(--primary) / 0.4);
+    transform: translateY(-2px);
   }
   
   .glow-purple {
@@ -96,7 +132,15 @@ All colors MUST be HSL.
     box-shadow: var(--glow-cyan);
   }
   
+  .glow-blue {
+    box-shadow: var(--glow-blue);
+  }
+  
   .card-shadow {
     box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
   }
 }
