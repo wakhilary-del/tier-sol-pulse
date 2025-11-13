@@ -13,14 +13,14 @@ export const SafetySection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="safety" className="py-20 relative">
+    <section id="safety" className="py-32 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
               <span className="gradient-text">{t.safety.title}</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground font-light">
               {t.safety.subtitle}
             </p>
           </div>
@@ -33,25 +33,28 @@ export const SafetySection = () => {
               return (
                 <div
                   key={point.key}
-                  className="glass-card p-6 rounded-2xl flex items-start gap-4 hover:scale-105 transition-all duration-300 card-shadow animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="glass-card-hover p-6 rounded-2xl flex items-start gap-5 shadow-elevated animate-fade-in"
+                  style={{ animationDelay: `${index * 0.08}s` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0 glow-purple">
-                    <Icon className="h-6 w-6 text-white" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                    <Icon className="h-6 w-6 text-white" strokeWidth={2.5} />
                   </div>
-                  <p className="text-lg flex-1 pt-2">{t.safety[textKey]}</p>
+                  <p className="text-base flex-1 pt-2.5 font-light leading-relaxed">{t.safety[textKey]}</p>
                 </div>
               );
             })}
           </div>
 
           {/* Trust Badge */}
-          <div className="mt-12 glass-card p-8 rounded-3xl text-center border-2 border-secondary/30 glow-cyan">
-            <Shield className="h-16 w-16 text-secondary mx-auto mb-4" />
-            <h3 className="text-2xl font-bold gradient-text mb-2">100% Read-Only Access</h3>
-            <p className="text-muted-foreground">
-              Your wallet, your funds, your control. Always.
-            </p>
+          <div className="mt-16 glass-card p-10 rounded-3xl text-center border-2 border-secondary/30 shadow-elevated relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-primary/5" />
+            <div className="relative z-10">
+              <Shield className="h-16 w-16 text-secondary mx-auto mb-4" strokeWidth={2} />
+              <h3 className="text-3xl font-black gradient-text mb-3">100% Read-Only Access</h3>
+              <p className="text-muted-foreground font-light text-lg">
+                Your wallet, your funds, your control. Always.
+              </p>
+            </div>
           </div>
         </div>
       </div>

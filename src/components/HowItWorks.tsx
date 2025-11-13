@@ -26,10 +26,10 @@ export const HowItWorks = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="how-it-works" className="py-20 relative">
+    <section id="how-it-works" className="py-32 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
             <span className="gradient-text">{t.howItWorks.title}</span>
           </h2>
         </div>
@@ -43,19 +43,20 @@ export const HowItWorks = () => {
             return (
               <div
                 key={step.key}
-                className="glass-card p-8 rounded-3xl card-shadow hover:scale-105 transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className="glass-card-hover p-8 rounded-3xl shadow-elevated animate-fade-in relative overflow-hidden"
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color === 'text-blue-400' ? 'from-blue-500 to-cyan-400' : step.color === 'text-purple-400' ? 'from-purple-500 to-pink-400' : 'from-cyan-500 to-teal-400'} flex items-center justify-center mb-6 ${step.glow}`}>
-                  <Icon className="h-8 w-8 text-white" />
+                {/* Number badge */}
+                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-2xl font-black gradient-text">{index + 1}</span>
                 </div>
                 
-                <div className="text-5xl font-bold gradient-text mb-4">
-                  {index + 1}
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color === 'text-blue-400' ? 'from-blue-500 to-cyan-400' : step.color === 'text-purple-400' ? 'from-purple-500 to-pink-400' : 'from-cyan-500 to-teal-400'} flex items-center justify-center mb-6`}>
+                  <Icon className="h-8 w-8 text-white" strokeWidth={2.5} />
                 </div>
                 
-                <h3 className="text-2xl font-bold mb-4">{t.howItWorks[titleKey]}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-2xl font-bold mb-3">{t.howItWorks[titleKey]}</h3>
+                <p className="text-muted-foreground leading-relaxed font-light">
                   {t.howItWorks[descKey]}
                 </p>
               </div>

@@ -17,11 +17,11 @@ export const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 relative">
+    <section id="faq" className="py-32 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
               <span className="gradient-text">{t.faq.title}</span>
             </h2>
           </div>
@@ -31,13 +31,13 @@ export const FAQSection = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass-card px-6 rounded-2xl border-0 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card-hover px-7 py-2 rounded-2xl border shadow-elevated animate-fade-in"
+                style={{ animationDelay: `${index * 0.08}s` }}
               >
-                <AccordionTrigger className="text-lg font-semibold hover:text-primary">
+                <AccordionTrigger className="text-lg font-bold hover:text-primary [&[data-state=open]]:text-primary">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-muted-foreground leading-relaxed font-light">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
