@@ -1,49 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from './ui/button';
-
-interface Message {
-  id: string;
-  text: string;
-  sender: 'user' | 'support';
-  timestamp: Date;
-}
+import { useChat } from '@/contexts/ChatContext';
 
 export const SupportChat = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: 'Hello! How can we help you today?',
-      sender: 'support',
-      timestamp: new Date(),
-    },
-  ]);
   const [inputValue, setInputValue] = useState('');
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const { createSession, addMessage, getSession } = useChat();
+
+  useEffect(() => {
+    if (!sessionId) {
+      const newSessionId = createSession();
+      setSessionId(newSessionId);
+    }
+  }, [sessionId, createSession]);
+
+  const session = sessionId ? getSession(sessionId) : null;
+  const messages = session?.messages || [];
 
   const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() || !sessionId) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
+    addMessage(sessionId, {
       text: inputValue,
       sender: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    });
     setInputValue('');
-
-    // Simulate support response
-    setTimeout(() => {
-      const supportMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: 'Thanks for your message. Our support team will reply shortly.',
-        sender: 'support',
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, supportMessage]);
-    }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -58,12 +41,12 @@ export const SupportChat = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary shadow-elevated hover:scale-110 transition-all duration-300 flex items-center justify-center ${
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-elevated hover:bg-primary/90 transition-all duration-200 flex items-center justify-center ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
         aria-label="Open support chat"
       >
-        <MessageCircle className="h-6 w-6 text-white" />
+        <MessageCircle className="h-6 w-6 text-primary-foreground" />
       </button>
 
       {/* Chat Panel */}
@@ -72,8 +55,8 @@ export const SupportChat = () => {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border/50">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <MessageCircle className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <MessageCircle className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Support Chat</h3>
@@ -99,7 +82,7 @@ export const SupportChat = () => {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     message.sender === 'user'
-                      ? 'bg-gradient-to-br from-primary to-secondary text-white'
+                      ? 'bg-primary text-primary-foreground'
                       : 'bg-muted/30 text-foreground border border-border/30'
                   }`}
                 >
@@ -129,7 +112,7 @@ export const SupportChat = () => {
               <Button
                 onClick={handleSendMessage}
                 size="icon"
-                className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary hover:scale-105 transition-transform"
+                className="w-12 h-12 rounded-lg"
               >
                 <Send className="h-5 w-5" />
               </Button>
