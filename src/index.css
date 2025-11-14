@@ -8,66 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 20% 5%;
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
-    --card: 220 20% 8%;
+    --card: 217 33% 17%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 20% 6%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 265 85% 58%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 180 100% 60%;
-    --secondary-foreground: 220 20% 5%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 215 15% 70%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 65%;
 
-    --accent: 265 85% 58%;
+    --accent: 221 83% 53%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 265 85% 58%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 221 83% 53%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    /* Solana brand colors */
-    --solana-purple: 265 85% 58%;
-    --solana-cyan: 180 100% 60%;
-    --solana-blue: 230 80% 65%;
+    /* Refined color palette */
+    --solana-purple: 221 83% 53%;
+    --solana-cyan: 199 89% 48%;
+    --solana-blue: 217 91% 60%;
     
-    /* Tier colors */
-    --tier-1: 200 90% 55%;
-    --tier-2: 180 85% 60%;
-    --tier-3: 265 80% 60%;
-    --tier-4: 285 75% 65%;
-    --tier-5: 45 100% 60%;
+    /* Tier colors - more muted */
+    --tier-1: 199 89% 48%;
+    --tier-2: 188 86% 53%;
+    --tier-3: 221 83% 53%;
+    --tier-4: 250 75% 60%;
+    --tier-5: 45 93% 58%;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(265 85% 58%) 0%, hsl(180 100% 60%) 100%);
-    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(265 85% 25% / 0.3) 0%, transparent 70%),
-                      radial-gradient(ellipse at 0% 50%, hsl(230 80% 30% / 0.2) 0%, transparent 50%),
-                      radial-gradient(ellipse at 100% 50%, hsl(180 100% 30% / 0.2) 0%, transparent 50%);
-    --gradient-card: linear-gradient(135deg, hsl(220 20% 10% / 0.5) 0%, hsl(220 20% 8% / 0.8) 100%);
-    --gradient-mesh: linear-gradient(135deg, hsl(265 85% 58% / 0.1) 0%, hsl(180 100% 60% / 0.1) 100%);
+    /* Gradients - more subtle */
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(199 89% 48%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(221 83% 20% / 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(217 33% 17% / 0.8) 0%, hsl(217 33% 15% / 0.9) 100%);
     
-    /* Glows */
-    --glow-purple: 0 0 80px hsl(265 85% 58% / 0.3), 0 0 40px hsl(265 85% 58% / 0.2);
-    --glow-cyan: 0 0 80px hsl(180 100% 60% / 0.3), 0 0 40px hsl(180 100% 60% / 0.2);
-    --glow-blue: 0 0 60px hsl(230 80% 65% / 0.3);
-    --shadow-card: 0 25px 80px hsl(265 85% 20% / 0.2), 0 10px 30px hsl(265 85% 20% / 0.15);
-    --shadow-elevated: 0 30px 100px hsl(265 85% 20% / 0.3), 0 15px 40px hsl(180 100% 30% / 0.2);
+    /* Soft shadows - no glows */
+    --shadow-card: 0 10px 40px hsl(222 47% 11% / 0.5);
+    --shadow-elevated: 0 20px 60px hsl(222 47% 11% / 0.6);
+    --shadow-button: 0 4px 16px hsl(221 83% 53% / 0.25);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
@@ -102,16 +96,9 @@ All colors MUST be HSL.
     background-clip: text;
   }
   
-  .gradient-text-alt {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--solana-blue)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
   .glass-card {
     background: var(--gradient-card);
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--border) / 0.5);
   }
   
@@ -120,21 +107,10 @@ All colors MUST be HSL.
   }
   
   .glass-card-hover:hover {
-    background: linear-gradient(135deg, hsl(220 20% 12% / 0.6) 0%, hsl(220 20% 10% / 0.9) 100%);
-    border-color: hsl(var(--primary) / 0.4);
+    background: linear-gradient(135deg, hsl(217 33% 19% / 0.85) 0%, hsl(217 33% 17% / 0.95) 100%);
+    border-color: hsl(var(--primary) / 0.5);
     transform: translateY(-2px);
-  }
-  
-  .glow-purple {
-    box-shadow: var(--glow-purple);
-  }
-  
-  .glow-cyan {
-    box-shadow: var(--glow-cyan);
-  }
-  
-  .glow-blue {
-    box-shadow: var(--glow-blue);
+    box-shadow: var(--shadow-card);
   }
   
   .card-shadow {
@@ -143,5 +119,9 @@ All colors MUST be HSL.
   
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
+  }
+  
+  .button-shadow {
+    box-shadow: var(--shadow-button);
   }
 }

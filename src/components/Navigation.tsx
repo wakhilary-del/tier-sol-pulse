@@ -27,10 +27,8 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
-              <Zap className="h-6 w-6 text-white" strokeWidth={2.5} />
-            </div>
-            <span className="text-xl font-black gradient-text hidden sm:inline tracking-tight">Solana Rewards</span>
+            <img src="/src/assets/solana-logo.png" alt="Solana" className="w-10 h-10" />
+            <span className="text-xl font-bold text-foreground hidden sm:inline tracking-tight">SolBoost</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -50,7 +48,7 @@ export const Navigation = () => {
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
             <Button
-              className="hidden md:flex bg-gradient-to-r from-primary to-secondary hover:opacity-90 rounded-full px-6 font-semibold shadow-lg"
+              className="hidden md:flex"
               onClick={() => scrollToSection('#tiers')}
             >
               {t.nav.connectWallet}
@@ -81,7 +79,7 @@ export const Navigation = () => {
               </button>
             ))}
             <Button
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 mt-4 rounded-full font-semibold"
+              className="w-full mt-4"
               onClick={() => {
                 scrollToSection('#tiers');
                 setIsOpen(false);
