@@ -1,6 +1,7 @@
 import { Tier } from '@/data/tiers';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Sparkles, Search, Rocket, Compass, Zap, Crown } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const iconMap = {
   Search,
@@ -18,6 +19,7 @@ interface TierCardProps {
 export const TierCard = ({ tier, index }: TierCardProps) => {
   const { t } = useLanguage();
   const TierIcon = iconMap[tier.iconName as keyof typeof iconMap];
+  const { ref, isVisible } = useScrollAnimation();
 
   const formatBalance = (min: number, max: number | null) => {
     if (max === null) return `$${min.toLocaleString()}+`;
@@ -26,8 +28,11 @@ export const TierCard = ({ tier, index }: TierCardProps) => {
 
   return (
     <div
-      className="glass-card-hover p-8 rounded-3xl shadow-elevated group animate-fade-in relative overflow-hidden border"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      ref={ref}
+      className={`glass-card-hover p-8 rounded-3xl shadow-elevated group relative overflow-hidden border transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
       {/* Gradient mesh background */}
       <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary via-transparent to-secondary" />

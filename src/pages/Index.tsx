@@ -7,6 +7,7 @@ import { SafetySection } from '@/components/SafetySection';
 import { RevenueSection } from '@/components/RevenueSection';
 import { FAQSection } from '@/components/FAQSection';
 import { Footer } from '@/components/Footer';
+import { SupportChat } from '@/components/SupportChat';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
           <FAQSection />
         </main>
         <Footer />
+        <SupportChat />
       </div>
     </LanguageProvider>
   );
